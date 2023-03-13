@@ -1,0 +1,33 @@
+🎀 들으면서--
+1. 모듈화 할 수 있는 부분은 가져가서 사용하자.
+   어떻게 활용할수 있을지 생각하면서 듣기
+
+✨ rem, em ( 💬 페이지내용 css 작성 1)
+- font-size 는 em으로, height나 margin 은 rem으로  --?
+
+html -> font-size:14px 가 1rem
+4rem 은 14*4 = 56px 
+
+- .description {font-size:2.5rem; height:3em;}
+em을 사용하면 현재 폰트 사이즈를 가져와서 height 지정
+html은 14px ---> 1rem 이 14px, description 의 font-size:2.5rem 이므로 35px가 된다.
+이때 height 를 em으로 사용하면 자신의 font-size를 가져와서 그 비율에 맞는 height 를 지정해주므로 편리하다
+height:3em 이니까 font-size 35px의 3배, 즉  105px이 height 로 지정되게 된다.
+
+- 쉽게 말해서 rem은 html 의 fz를 가져온 비율대로, 
+              em은 해당 엘리먼트 font-size 의 비율대로.  ??
+
+✏ 영지팀장님 고등어 작업한거 참고
+✏ em, rem사용해서 실제로 연습해보자
+
+✨ position: sticky -> IE (💢💢)
+
+✨ 전역 변수 ... 즉시실행 ?
+(function (){})();
+(() => {})();
+
+✏ 모던 js 이부분 읽어보기
+
+
+
+

@@ -1,0 +1,43 @@
+html{font-family:"Pretendard";font-size:14px}
+
+/* Section 0 */
+#scroll-section-0 h1{font-size:4rem;text-align:center}
+.main-message{display:flex;align-items: center;justify-content:center;height:3em;margin:5px 0;font-size:2.5rem;}
+.main-message p{font-weight:bold;text-align:center;line-height:1.2;}
+
+/* Section 1 */
+#scroll-section-1 .main-message{font-size:3.5rem;}
+.main-message small{display:block;margin-bottom:0.5em;font-size:1.2rem}
+.description strong{float:left;font-size:3rem;color:#222;margin-right:0.2em;}
+.description{max-width:1000px;margin:0 auto;padding:0 1rem;font-size:1.2rem;color:#888}
+.desc-message{font-weight:bold;width:50%;}
+.pin{width:1px;height:100px;background-color:#222;}
+
+.mid-message{max-width:1000px;padding:0 1rem;margin:0 auto;font-size:2rem;color:#888;}
+.mid-message strong{font-weight:bold;color:#222;}
+.canvas-caption{max-width:1000px;padding:0 1rem;margin:0 auto;color:#888;font-size:1.2rem}
+
+.footer{display:flex;align-items: center;justify-content: center;height:7rem;background-color: darkorange;}
+
+/* Common */
+.sticky-elem{display:none;position:fixed;top:0;left:0;width:100%;}
+.scroll-section{padding-top:50vh}
+
+
+/* Script */
+#show-scene-0 #scroll-section-0 .sticky-elem,
+#show-scene-1 #scroll-section-1 .sticky-elem,
+#show-scene-2 #scroll-section-2 .sticky-elem,
+#show-scene-3 #scroll-section-3 .sticky-elem{display: block;}
+
+@media (min-width:1024px){
+    #scroll-section-0 h1{font-size:9vw;}
+    .main-message{font-size:4vw;}
+    .description{font-size:2rem;}
+    .description strong{font-size:6rem}
+    .main-message small{font-size:1.5vw;}
+    .desc-message{width:20%;}
+    .mid-message{font-size:4vw;}
+    .canvas-caption{font-size:2rem;}
+}
+
