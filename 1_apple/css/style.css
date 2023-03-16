@@ -2,7 +2,7 @@ html{font-family:"Pretendard";font-size:14px}
 
 /* Section 0 */
 #scroll-section-0 h1{font-size:4rem;text-align:center}
-.main-message{display:flex;align-items: center;justify-content:center;height:3em;margin:5px 0;font-size:2.5rem;}
+.main-message{display:flex;align-items: center;justify-content:center;height:3em;opacity:0;margin:5px 0;font-size:2.5rem;}
 .main-message p{font-weight:bold;text-align:center;line-height:1.2;}
 
 /* Section 1 */

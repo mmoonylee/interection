@@ -18,7 +18,7 @@
 				messageD: document.querySelector('#scroll-section-0 .main-message.d'),
             },
             values:{
-
+                messageA_opacity : [0, 1]
             }
         },
         {
@@ -68,6 +68,14 @@
 		}
     }
 
+    function calcValues(values, currentYOffset){
+        let rv;
+        let scrollRatio = currentYOffset / sceneInfo[currentScene].scrollHeight;
+        rv = scrollRatio * (values[1] = values[0]) + values[0];
+        return scrollRatio;
+
+    }
+
     function scrollLoop(){
         prevScrollHeight = 0; 
         for (let i = 0; i < currentScene; i++) {
@@ -86,11 +94,32 @@
         }
 
         document.body.setAttribute('id', `show-scene-${currentScene}`);
-        console.log(currentScene)
+        playAnimation();
     }
 
     function playAnimation(){
-        
+        const objs = sceneInfo[currentScene].objs;
+        const values = sceneInfo[currentScene].values;
+        const currentYOffset= yOffset - prevScrollHeight;
+
+        switch (currentScene){
+            case 0:
+                let messageA_opacity_in = calcValues(values.messageA_opacity, currentYOffset);
+                objs.messageA.style.opacity = messageA_opacity_in;
+                // let messageA_opacity_out = values.messageA_opacity[1];
+                // console.log( calcValues(values.messageA_opacity, currentYOffset));
+                break;
+            case 1:
+                
+                break;
+            case 2:
+            
+                break;
+            case 3:
+
+                break;
+        }
+
 
     }
     
