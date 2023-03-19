@@ -26,7 +26,7 @@
                 videoImageCount: 300,
 				imageSequence: [0, 299],
 				canvas_opacity: [1, 0, { start: 0.9, end: 1 }],
-				messageA_opacity_in: [0, 1, { start: 0.1, end: 0.2 }],
+				s: [0, 1, { start: 0.1, end: 0.2 }],
 				messageB_opacity_in: [0, 1, { start: 0.3, end: 0.4 }],
 				messageC_opacity_in: [0, 1, { start: 0.5, end: 0.6 }],
 				messageD_opacity_in: [0, 1, { start: 0.7, end: 0.8 }],
@@ -78,7 +78,7 @@
 				messageA_translateY_in: [20, 0, { start: 0.15, end: 0.2 }],
 				messageB_translateY_in: [30, 0, { start: 0.5, end: 0.55 }],
 				messageC_translateY_in: [30, 0, { start: 0.72, end: 0.77 }],
-				messageA_opacity_in: [0, 1, { start: 0.15, end: 0.2 }],
+				s: [0, 1, { start: 0.15, end: 0.2 }],
 				messageB_opacity_in: [0, 1, { start: 0.5, end: 0.55 }],
 				messageC_opacity_in: [0, 1, { start: 0.72, end: 0.77 }],
 				messageA_translateY_out: [0, -20, { start: 0.3, end: 0.35 }],
@@ -243,7 +243,7 @@
 
 				if (scrollRatio <= 0.22) {
 					// in
-					objs.messageA.style.opacity = calcValues(values.messageA_opacity_in, currentYOffset);
+					objs.messageA.style.opacity = calcValues(values.s, currentYOffset);
 					objs.messageA.style.transform = `translate3d(0, ${calcValues(values.messageA_translateY_in, currentYOffset)}%, 0)`;
 				} else {
 					// out

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding:0;margin:0;}
+        ul{list-style:none;}
+        /* .sticky-sec__item{display:flex;align-items:center;justify-content:center;flex-direction:column;position:fixed;top:50%;width:100%;opacity:0;transform:translateY(-50%);transition:opacity .3s;} */
+        .sticky-sec__item{display:flex;align-items:center;justify-content:center;flex-direction:column;position:fixed;top:50%;width:100%;transform:translateY(-50%);transition:opacity .3s;}
+        /* .sticky-sec__item.active{opacity:1;} */
+    
+    </style>
+</head>
+<body>
+    <section id="my-sticky" class="sticky-sec">
+        <ul class="sticky-sec__list">
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">첫번째 메시지</h2>
+                <p class="sticky-sec__desc">첫번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">두번째 메시지</h2>
+                <p class="sticky-sec__desc">두번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">세번째 메시지</h2>
+                <p class="sticky-sec__desc">세번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">네번째 메시지</h2>
+                <p class="sticky-sec__desc">네번째 메시지 디스크립션</p>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script>
+$(function(){
+    const section = $("#my-sticky");
+    const message = $(".sticky-sec__item");
+    const message_leng = message.length;
+    const win_h  = $(window).height();
+    const section_h = win_h * message_leng;
+    let currentMessage = 0;
+    // let msg_idx = []
+    
+    let scr_t = $(window).scrollTop();
+    let scr_total = section_h - win_h;
+    
+    setLayout();
+    function setLayout(){
+        section.css("height", section_h +"px");
+        message.eq(currentMessage).addClass("active");
+    }
+    function calcValues(scr_t){
+        for(i=0;i<message_leng;i++){
+
+            // 메시지들을 각각의 스크롤탑값을 가져와서 메시지들이 가지고 있는 각자의 탑의값보다 커지면..
+            // 스크롤탑 비율에 따라 opacity 랑 등등을 계산해서 반영할수 있어야함
+        
+        }
+
+        let sec_ratio =  scr_t / scr_total ;
+        // console.log(Math.round(sec_ratio * 100));
+    }
+    function scrollLoop(){
+        scr_t = $(window).scrollTop();
+        calcValues();
+        // playAnimation();
+    }
+    function playAnimation(){
+        // if(sec_ratio < )
+    }
+    $(window).scroll(function (){
+        scrollLoop();
+    });
+});
+
+    
+</script>
