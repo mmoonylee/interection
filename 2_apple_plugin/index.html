@@ -47,33 +47,65 @@ $(function(){
     const section_h = win_h * message_leng;
     let currentMessage = 0;
     // let msg_idx = []
+    let start_arr = [];
+    let end_arr = [];
     
     let scr_t = $(window).scrollTop();
     let scr_total = section_h - win_h;
-    
+    // calcValues();
     setLayout();
     function setLayout(){
         section.css("height", section_h +"px");
         message.eq(currentMessage).addClass("active");
     }
     function calcValues(scr_t){
-        for(i=0;i<message_leng;i++){
+        let interval_calc = 1/ message_leng ;
+        let current_scr;
+        // scr_ratio 0~ 0.25 구간을 0~1로 보았을때 스크롤이 얼마나 되었는가 
 
-            // 메시지들을 각각의 스크롤탑값을 가져와서 메시지들이 가지고 있는 각자의 탑의값보다 커지면..
-            // 스크롤탑 비율에 따라 opacity 랑 등등을 계산해서 반영할수 있어야함
-        
+        for(i=0;i<message_leng;i++){
+            // 0 1 2 3  --> i
+            // 0 ~ 0.25 
+            // 0.25 ~ 0.5
+            // 0.5 ~ 0.75
+            // 0.75 ~ 1
+
+            // 시작과 끝 ratio 세팅
+            let start_calc  = interval_calc * i;
+            let end_calc = start_calc + interval_calc;
+            start_arr.push(start_calc);
+            end_arr.push(end_calc);
+
+            // current_scr 구해보기
+            // current_scr 
+            // 현재 스크롤에서 이전 섹션들의 높이 합한값을 빼주면 현재 스크롤한 양이 나옴.
+            // 이처럼 scr_ratio에서 이전 끝값을 빼주면 현재 스크롤한 값이 나옴
+            
+            // 3번째구간(i=2, 0.5~ 0.75 구간을 스크롤 중일때 ratio가져와서 ex. 0.66666
+            // 0.6666 - 0.5 (시작값) = 0.1111111;
+            
+
         }
 
-        let sec_ratio =  scr_t / scr_total ;
-        // console.log(Math.round(sec_ratio * 100));
+
     }
     function scrollLoop(){
         scr_t = $(window).scrollTop();
-        calcValues();
-        // playAnimation();
+        playAnimation();
     }
     function playAnimation(){
-        // if(sec_ratio < )
+        let scr_ratio =  scr_t / scr_total ;
+        // console.log(Math.round(scr_ratio * 100));
+        // for (let i=0; i<message_leng;i++){
+        //     console.log(start_arr[i])
+        // }
+        // console.log(start_arr);
+        // 
+        for(i=0;i<message_leng;i++){
+            if(scr_ratio > start_arr[i] && scr_ratio < end_arr[i]){
+                console.log(i);
+            }
+        }
     }
     $(window).scroll(function (){
         scrollLoop();
