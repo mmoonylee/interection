@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+*{padding:0;margin:0;}
+body{height: 500vh;}
+.sample-video{position:fixed;top:0;left:0;width:100%}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <video class="sample-video" src="video/sample-low.mp4" muted></video> -->
+        <video class="sample-video" src="video/sample-high.mp4" muted></video>
+    </div>
+</body>
+</html>
+<script>
+    const videoElem = document.querySelector('.sample-video');
+    let progress;
+    let videoDuration;
+    videoElem.addEventListener("loadeddata", function (){
+        console.log("비디오 로드완료");
+        videoDuration = videoElem.duration; //비디오 재생시간 가져옴
+        init();
+    })
+
+    function init() {
+        window.addEventListener("scroll", function () {
+            progress = pageYOffset / (document.body.offsetHeight - window.innerHeight); //스크롤양 구하기
+            console.log(progress);
+            if (progress < 0) progress = 0; //바운스 방지
+            if (progress > 1) progress = 1; //바운스 방지
+            videoElem.currentTime = videoElem.duration * progress;
+        });
+    }
+    // window.addEventListener('load', init);
+</script>

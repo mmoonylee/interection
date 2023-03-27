@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding:0;margin:0;}
+        ul{list-style:none;}
+        /* .sticky-sec__item{display:flex;align-items:center;justify-content:center;flex-direction:column;position:fixed;top:50%;width:100%;opacity:0;transform:translateY(-50%);transition:opacity .3s;} */
+        .sticky-sec__item{display:flex;align-items:center;justify-content:center;flex-direction:column;position:fixed;top:50%;width:100%;transform:translateY(-50%);transition:opacity .3s;}
+        /* .sticky-sec__item.active{opacity:1;} */
+        .sticky-sec__item{opacity:0;}
+    
+    </style>
+</head>
+<body>
+    <section id="my-sticky" class="sticky-sec">
+        <ul class="sticky-sec__list">
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">첫번째 메시지</h2>
+                <p class="sticky-sec__desc">첫번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">두번째 메시지</h2>
+                <p class="sticky-sec__desc">두번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">세번째 메시지</h2>
+                <p class="sticky-sec__desc">세번째 메시지 디스크립션</p>
+            </li>
+            <li class="sticky-sec__item">
+                <h2 class="sticky-sec__title">네번째 메시지</h2>
+                <p class="sticky-sec__desc">네번째 메시지 디스크립션</p>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script>
+$(function(){
+    const section = $("#my-sticky");
+    const message = $(".sticky-sec__item");
+    const message_leng = message.length;
+    const win_h  = $(window).height();
+    const section_h = win_h * message_leng;
+    let currentMessage = 0;
+    let prevScrollHeight = 0;
+    let start_arr = [];
+    let end_arr = [];
+    let opacity_value = [0 , 1];
+    let rv;
+
+    
+    let scr_t = $(window).scrollTop();
+    let scr_total = section_h - win_h;
+    console.log(scr_total);
+    
+    setLayout();
+    function setLayout(){
+        section.css("height", section_h +"px");
+        message.eq(currentMessage).addClass("active");
+    }
+    function calcValues(scr_ratio){
+        // let aaa = scr_total * (end_arr[currentMessage] - start_arr[currentMessage]);
+        rv = scr_ratio * ((opacity_value[1] - opacity_value[0]) - opacity_value[0]);
+        return rv;
+    }
+    function scrollLoop(){
+        scr_t = $(window).scrollTop();
+        let scr_ratio =  scr_t / scr_total ;
+        // if(scr_ratio > end_arr[currentMessage]){
+        //     currentMessage++;
+        // }else if(scr_ratio < start_arr[currentMessage]){
+        //     currentMessage--;
+        // }
+        // message.eq(currentMessage).addClass("active").siblings().removeClass("active");
+
+        // prevScrollHeight = 0;
+        // for(let i = 0;i<currentMessage;i++){
+        //     prevScrollHeight += sceneInfo[i].scrollHeight();
+        // }
+        
+        let prevScrollHeight = currentMessage * win_h ;
+
+        // 0 / 872 / 1744 / 2616
+        // let currentYOffset = scr_t - prevScrollHeight;
+        // console.log(currentYOffset);
+
+
+        calcValues(scr_ratio);
+        playAnimation(currentMessage, scr_ratio);
+    }
+    function playAnimation(currentMessage, scr_ratio){
+        let interval_calc = 1/ message_leng ;
+        // let current_scr;
+        // scr_ratio 0~ 0.25 구간을 0~1로 보았을때 스크롤이 얼마나 되었는가 
+        for(i=0;i<message_leng;i++){
+            // 0 1 2 3  --> i
+            // 0 ~ 0.25 
+            // 0.25 ~ 0.5
+            // 0.5 ~ 0.75
+            // 0.75 ~ 1
+            
+            // 시작과 끝 ratio 세팅
+            let start_calc  = interval_calc * i;
+            let end_calc = start_calc + interval_calc;
+            start_arr.push(start_calc);
+            end_arr.push(end_calc);
+
+            // current_scr 구해보기
+            // current_scr 
+            // 현재 스크롤에서 이전 섹션들의 높이 합한값을 빼주면 현재 스크롤한 양이 나옴.
+            // 이처럼 scr_ratio에서 이전 끝값을 빼주면 현재 스크롤한 값이 나옴
+            
+            // 3번째구간(i=2, 0.5~ 0.75 구간을 스크롤 중일때 ratio가져와서 ex. 0.66666
+            // 0.6666 - 0.5 (시작값) = 0.1111111 ---> 
+
+
+            // console.log(interval_calc);
+
+            // let start_aa = interval_calc *i;
+            // if(start_aa )
+            // console.log(start_aa);
+            // if(interval_calc * i );
+
+
+        }
+
+
+
+        // console.log();
+        // if( scr_ratio > start_arr[currentMessage] && scr_ratio < end_arr[currentMessage] ){
+        //     message.eq(currentMessage).css("opacity", current_ratio);
+        // }
+
+        
+        // console.log(Math.round(scr_ratio * 100));
+        // for (let i=0; i<message_leng;i++){
+        //     console.log(start_arr[i])
+        // }
+        // console.log(start_arr);
+        // 
+        // for(i=0;i<message_leng;i++){
+        //     if(scr_ratio > start_arr[i] && scr_ratio < end_arr[i]){
+        //         console.log(i);
+        //     }
+        // }
+    }
+    $(window).scroll(function (){
+        scrollLoop();
+        
+    });
+});
+
+    
+</script>
