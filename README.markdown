@@ -18,3 +18,6 @@
    03_canvas_ver --> canvas로 만들기 (apple방식)
 - 실습에서 쓸만한 플러그인으로 만들어보기
 
+## 4_apple_canvas_blend 
+- canvas 이용해서 스크롤 인터랙션 구현하기 
+- 23.03.28 30강까지 !
